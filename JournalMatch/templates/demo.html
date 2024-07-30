@@ -1,0 +1,940 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="A JavaScript library that can upload anything you throw at it, optimizes images for faster uploads, and offers a great, accessible, silky smooth user experience.">
+    
+    <title>Easy File Uploading With JavaScript | FilePond</title><link rel="canonical" href="https://pqina.nl/filepond/">
+    <script>
+    try {
+        (function(w, u){
+        u = new URL(w.location)
+        if (u.pathname.endsWith('/')) return
+        u.pathname += u.pathname.endsWith('/') ? '' : '/'
+        w.history.replaceState(null, document.title, u.toString())
+        }(window))
+    }
+    catch(err){}
+
+    
+    document.documentElement.className += ' js';
+
+    
+    assetsPath = 'static/assets/'
+    </script>
+    
+    <!-- facebook -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="Easy File Uploading With JavaScript | FilePond">
+    <meta property="og:url" content="https://pqina.nl/filepond/">
+    <meta property="og:product_link" content="https://pqina.nl/filepond/">
+    <meta property="og:image" content="https://pqina.nl/filepond/static/assets/social-square.png?1721398224">
+    <meta property="og:description" content="A JavaScript library that can upload anything you throw at it, optimizes images for faster uploads, and offers a great, accessible, silky smooth user experience.">
+    <meta property="og:locale" content="en_US">
+
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pqina_">
+    <meta name="twitter:creator" content="@rikschennink">
+    <meta name="twitter:title" content="Easy File Uploading With JavaScript | FilePond">
+    <meta name="twitter:description" content="A JavaScript library that can upload anything you throw at it, optimizes images for faster uploads, and offers a great, accessible, silky smooth user experience.">
+    <meta name="twitter:image" content="https://pqina.nl/filepond/static/assets/social-square.png?1721398224">
+    <meta name="twitter:image:alt" content="">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- styles for site -->
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css?v=1721398224">
+    
+    
+    
+    
+</head>
+<body data-module="ScrollTracker" class="invert-header">
+    
+    <header>
+        
+        <h1 aria-label="FilePond by PQINA">
+            <a href="./">
+                <span class="implicit">Easy File Uploading With JavaScript | FilePond</span>
+            </a>
+            <a href="../">by PQINA</a>
+        </h1>
+
+        <nav>
+            
+            <h2 class="implicit" data-module="SectionToggler" data-context="@media (max-width:50em)">Menu</h2>
+            <div>
+
+                <ul role="list">
+                    
+<li><a href="https://github.com/pqina/filepond/" rel="noopener" target="_blank">Download</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="/pintura/?ref=filepond">Image Editor</a></li>
+<li><a href="plugins/">Plugins</a></li>
+<li><a href="docs/" target="_blank">Docs</a></li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+    
+
+<section class="section-hero section-full section-centered">
+
+    <div class="content-wrapper content-centered">
+
+        <p>
+            <strong>Upload anything, from anywhere</strong>
+        </p>
+
+        <p>
+            A <strong>JavaScript library</strong> that can upload anything you throw at it, optimizes images for <strong>faster uploads</strong>, and offers a great, accessible, <strong>silky smooth user experience</strong>.
+        </p>
+
+        <div class="pond">
+            <input type="file" class="filepond" name="filepond" data-allow-image-preview="false" data-instant-upload="false" data-max-file-size="3MB">
+        </div>
+
+        <div class="hero-links-wrapper">
+
+            <div class="hero-links">
+
+                <a class="button" href="#adapters"> 
+                    Learn more
+                </a>
+
+                <a href="https://github.com/pqina/filepond" class="button button-call-to-action">
+                    FilePond on GitHub
+
+                    <span class="github-stars">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="none" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>14,000+</span>
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div> 
+
+    <div class="shimmer">
+        <div data-module="LazyVideo" data-video-src="./static/assets/underwater-grayscale-compressed-small.mp4"></div>
+    </div>
+
+    <div class="water">
+        <div data-module="TiledVideo" data-video-src="./static/assets/particles-compressed.mp4"></div>
+    </div>
+    
+</section>
+
+<section class="section-adapters" id="adapters">
+
+    <h2 class="section-title">Framework Adapters</h2>
+
+    <div class="content-wrapper content-narrow content-centered">
+    <p>The core library is written in vanilla JavaScript and therefore can be used everywhere.</p>
+<p>Below you can find a list of adapters that make it easier to use FilePond with your favorite framework.</p>
+
+
+    <div class="adapter-list">
+    <ul>
+        <li>
+            <a href="https://github.com/pqina/react-filepond">
+                <svg aria-hidden="true" width="256" height="228" viewBox="0 0 256 228" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621 6.238-30.281 2.16-54.676-11.769-62.708-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848 155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233 50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165 167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266 13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923 168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586 13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488 29.348-9.723 48.443-25.443 48.443-41.52 0-15.417-17.868-30.326-45.517-39.844zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345-3.24-10.257-7.612-21.163-12.963-32.432 5.106-11 9.31-21.767 12.459-31.957 2.619.758 5.16 1.557 7.61 2.4 23.69 8.156 38.14 20.213 38.14 29.504 0 9.896-15.606 22.743-40.946 31.14zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787-1.524 8.219-4.59 13.698-8.382 15.893-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246 12.376-1.098 24.068-2.894 34.671-5.345.522 2.107.986 4.173 1.386 6.193zM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994 7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94zM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863-6.35-5.437-9.555-10.836-9.555-15.216 0-9.322 13.897-21.212 37.076-29.293 2.813-.98 5.757-1.905 8.812-2.773 3.204 10.42 7.406 21.315 12.477 32.332-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789 8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18zM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152 7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793 2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433 4.902.192 9.899.29 14.978.29 5.218 0 10.376-.117 15.453-.343-4.985 6.774-10.018 12.97-15.028 18.486zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026 347.403 347.403 0 0 0 7.425-13.565zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815 329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627 310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695 358.489 358.489 0 0 1 11.036 20.54 329.472 329.472 0 0 1-11 20.722zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026-.344 1.668-.73 3.367-1.15 5.09-10.622-2.452-22.155-4.275-34.23-5.408-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3zM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86-22.86-10.235-22.86-22.86 10.235-22.86 22.86-22.86z"></path></svg>
+                React
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/pqina/vue-filepond">
+                <svg aria-hidden="true" width="90" height="90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196.32 170.02"><polygon fill="currentColor" points="120.83 0 98.16 39.26 75.49 0 0 0 98.16 170.02 196.32 0 120.83 0"></polygon><polygon fill="rgba(32, 38, 50, 0.52)" points="120.83 0 98.16 39.26 75.49 0 39.26 0 98.16 102.01 157.06 0 120.83 0"></polygon></svg>
+                Vue
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/pqina/svelte-filepond">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="100" height="100" viewBox="12 14 110 110">
+<path fill="rgba(255, 255, 255, 0.3)" d="M110.23,28.39C99.83,13.51,79.29,9.1,64.44,18.56L38.36,35.18a29.9,29.9,0,0,0-13.52,20,31.53,31.53,0,0,0,3.1,20.24,29.94,29.94,0,0,0-4.47,11.18,31.86,31.86,0,0,0,5.45,24.12c10.4,14.88,30.94,19.29,45.79,9.83L100.79,104a30,30,0,0,0,13.52-20,31.52,31.52,0,0,0-3.11-20.23,30.13,30.13,0,0,0,4.48-11.18,31.9,31.9,0,0,0-5.45-24.12"></path>
+<path fill="currentColor" d="M61.89,112.16a20.73,20.73,0,0,1-22.24-8.25,19.14,19.14,0,0,1-3.27-14.5A17,17,0,0,1,37,87l.49-1.5,1.34,1A33.78,33.78,0,0,0,49,91.56l1,.29-.09,1A5.9,5.9,0,0,0,51,96.7a6.25,6.25,0,0,0,6.7,2.48,5.85,5.85,0,0,0,1.6-.7L85.34,81.86a5.42,5.42,0,0,0,2.45-3.64,5.77,5.77,0,0,0-1-4.37,6.25,6.25,0,0,0-6.7-2.48,5.72,5.72,0,0,0-1.6.7l-10,6.35a19.1,19.1,0,0,1-5.29,2.32A20.72,20.72,0,0,1,41,72.5,19.16,19.16,0,0,1,37.75,58a18,18,0,0,1,8.13-12.06L72,29.32A19.05,19.05,0,0,1,77.26,27a20.71,20.71,0,0,1,22.23,8.25,19.14,19.14,0,0,1,3.28,14.5,20.15,20.15,0,0,1-.62,2.43l-.5,1.5-1.33-1a33.78,33.78,0,0,0-10.2-5.1l-1-.29.09-1a5.86,5.86,0,0,0-1.06-3.88A6.23,6.23,0,0,0,81.49,40a5.72,5.72,0,0,0-1.6.7L53.8,57.29a5.45,5.45,0,0,0-2.45,3.63,5.84,5.84,0,0,0,1,4.38A6.25,6.25,0,0,0,59,67.78a6,6,0,0,0,1.6-.7l10-6.34a18.61,18.61,0,0,1,5.3-2.33,20.7,20.7,0,0,1,22.23,8.24,19.16,19.16,0,0,1,3.28,14.5,18,18,0,0,1-8.13,12.06L67.19,109.83a19.18,19.18,0,0,1-5.3,2.33"></path></svg>
+                Svelte
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/pqina/ngx-filepond">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="30 30 210 190"><path fill="currentColor" d="M125 153.4h-24.7l-11.7 29.2H66.8L125 52.1v.1V30L31.9 63.2l14.2 123.1L125 230v-76.6z"></path><path fill="currentColor" d="M108 135.4h17V94.5z"></path><g opacity=".8"><path fill="currentColor" d="M125 153.4h24.7l11.7 29.2h21.8L125 52.1v.1V30l93.1 33.2-14.2 123.1L125 230v-76.6z"></path><path fill="currentColor" d="M142 135.4h-17V94.5z"></path></g></svg>
+                Angular
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/pqina/jquery-filepond">
+                <svg aria-hidden="true" width="116" height="116" viewBox="0 0 116 116" xmlns="http://www.w3.org/2000/svg">
+                <g fill="currentColor"><path d="M88.708 75.464l-.402 1.042c-6.85 13.34-18.989 21.524-36.303 21.885-8.094.167-15.806-1.91-20.844-4.168C20.287 89.338 11.142 80.279 6.148 70.6c-7.164-13.875-8.456-33.176 6.44-47.592.23 0-1.807 3.126-1.577 3.126l-.41 1.334C-.133 61.074 32.938 89.874 65.086 86.58c7.726-.792 17.578-5.023 23.622-11.116"></path><path d="M69.254 61.568c8.088.055 16.536-3.725 21.539-9.032-4.377 11.11-17.05 18.251-34.044 15.98-14.23-1.904-27.785-16.223-29.181-30.571-1.021-10.442 2.618-16.674 8.615-24.234-2.084 3.954-2.863 7.003-3.057 8.948-2.278 22.588 18.044 38.79 36.128 38.909"></path><path d="M89.98 33.512c-1.257 2.884-8.496 8.33-11.693 9.011-12.659 2.697-20.766-3.306-25.013-10.137-.631-1.02-1.798-3.806-2.007-4.515-1.647-5.6-.89-14.07 4.023-18.454-1.48 4.169-1.696 9.011-.917 12.159.472 1.903 1.91 5.226 3.349 7.316 2.618 3.807 4.279 4.732 7.642 6.754 1.515.91 3.14 1.64 3.842 1.84 3.189.939 9.922 3.412 20.775-3.974"></path></g></svg>
+                jQuery
+            </a>
+        </li>
+    </ul>
+</div>
+
+    <p class="content-narrow content-centered">
+    Receive a notification when a new adapter is released by <a href="#subscribe">subscribing to the newsletter</a>
+    </p>
+    
+    </div>
+
+</section>
+
+<section class="section-demo" id="examples">
+
+    <div class="content-wrapper content-wide">
+
+        <h2 class="section-title">Example Implementations</h2>
+
+        <div class="content-wrapper content-narrow content-centered">
+        <p>Let's look at two quick example implementations and see what FilePond is capable of.</p>
+
+        </div>
+
+        <h3 class="demo-heading">
+        Multiple File Upload</h3>
+
+        <div>
+
+            <ul role="tablist" data-module="TabList">
+                <li role="tab" aria-selected="true"><a href="#multi-file-demo" id="multi-file-demo-tab">Demo</a></li>
+                <li role="tab"><a href="#multi-file-code" id="multi-file-code-tab">Code</a></li>
+            </ul>
+
+            <div class="demo-group" id="multi-file-demo" role="tabpanel" aria-labelledby="multi-file-demo-tab">
+                <h4 class="implicit">Multi File Demo</h4>
+                <div class="demo-about" id="demo-01">
+                    <ul>
+<li>Add the <code>multiple</code> attribute to a file input to create a multi-file drop area.</li>
+<li>Limit the maximum amount of files with the <code>data-max-files</code> attribute.</li>
+<li>Drop an image and FilePond will render a quick preview. It'll also correct mobile photo orientation info.</li>
+<li>Files can be reordered, grab a file and drag it to a new location.</li>
+<li><strong>Image editing is powered by <a href="/pintura/?ref=filepond" target="_blank">Pintura</a></strong></li>
+</ul>
+
+                </div>
+                <div class="demo">
+                    <div class="demo-filepond-wrapper">
+                        <input type="file" class="filepond" name="filepond" multiple="" data-allow-reorder="true" data-max-file-size="10MB" data-max-files="3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-window" id="multi-file-code" role="tabpanel" aria-labelledby="multi-file-code-tab" hidden="">
+                <h4 class="implicit">Multiple File Code</h4>
+                
+                
+                
+
+<div class="window">
+    <span></span><span></span><span></span>
+    
+    <a target="_blank" rel="noopener" href="https://codepen.io/rikschennink/pen/WXavEx">edit on codepen 
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-codepen"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" y1="22" x2="12" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline><polyline points="2 15.5 12 8.5 22 15.5"></polyline><line x1="12" y1="2" x2="12" y2="8.5"></line></svg></a>
+    
+    <div>
+        <div class="code-panels">
+<pre class="language-html" data-multiline="true"><code class="language-html"><span class="token comment">&lt;!--
+The classic file input element we'll enhance
+to a file pond, configured with attributes
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>filepond<span class="token punctuation">"</span></span>
+    <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>filepond<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">multiple</span> 
+    <span class="token attr-name">data-allow-reorder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data-max-file-size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3MB<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data-max-files</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<pre class="language-js" data-multiline="true"><code class="language-js"><span class="token comment">// We want to preview images, so we register</span>
+<span class="token comment">// the Image Preview plugin, We also register </span>
+<span class="token comment">// exif orientation (to correct mobile image</span>
+<span class="token comment">// orientation) and size validation, to prevent</span>
+<span class="token comment">// large files from being added</span>
+FilePond<span class="token punctuation">.</span><span class="token function">registerPlugin</span><span class="token punctuation">(</span>
+  FilePondPluginImagePreview<span class="token punctuation">,</span>
+  FilePondPluginImageExifOrientation<span class="token punctuation">,</span>
+  FilePondPluginFileValidateSize<span class="token punctuation">,</span>
+  FilePondPluginImageEdit
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Select the file input and use </span>
+<span class="token comment">// create() to turn it into a pond</span>
+FilePond<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// How to use with Pintura Image Editor:</span>
+<span class="token comment">// https://pqina.nl/pintura/docs/latest/getting-started/installation/filepond/</span></code></pre>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div>
+            
+            <h3 class="demo-heading">Profile Picture Selection</h3>
+
+            <ul role="tablist" class="aria-tablist" data-module="TabList">
+                <li role="tab" aria-selected="true"><a class="aria-tab" href="#profile-picture-demo" id="profile-picture-demo-tab">Demo</a></li>
+                <li role="tab"><a class="aria-tab" href="#profile-picture-code" id="profile-picture-code-tab">Code</a></li>
+            </ul>
+
+            <div class="demo-group demo-group-reversed" id="profile-picture-demo" role="tabpanel" aria-labelledby="profile-picture-demo-tab">
+
+                <h4 class="implicit">Profile Picture Demo</h4>
+                
+                <div class="demo-about">
+
+                    <ul>
+<li>Dropped images will automatically be cropped to a 1:1 aspect ratio and scaled to fit a 200 × 200 bounding box.</li>
+<li>Should you accidentally drop an image on the browser window, FilePond will prevent the browser from opening it.</li>
+<li><strong>Image editing is powered by <a href="/pintura/?ref=filepond" target="_blank">Pintura</a></strong></li>
+</ul>
+
+                    
+                </div>
+
+                <div class="demo">
+                    <input type="file" name="filepond" class="filepond demo-profile-picture" accept="image/png, image/jpeg, image/gif" data-label-idle="Drag &amp; Drop your picture or <span class='filepond--label-action'>Browse</span>" data-instant-upload="false" data-drop-validation="true" data-image-preview-height="170" data-image-crop-aspect-ratio="1:1" data-style-panel-layout="compact circle" data-style-load-indicator-position="center bottom" data-style-progress-indicator-position="right bottom" data-style-button-remove-item-position="left bottom" data-style-button-process-item-position="right bottom">
+                </div>
+
+            </div>
+
+            <div class="demo-window" id="profile-picture-code" role="tabpanel" aria-labelledby="profile-picture-code-tab" hidden="">
+
+                <h4 class="implicit">Profile Picture Code</h4>
+                
+                
+                
+                
+
+<div class="window">
+    <span></span><span></span><span></span>
+    
+    <a target="_blank" rel="noopener" href="https://codepen.io/rikschennink/pen/EQOLYe">edit on codepen 
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-codepen"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" y1="22" x2="12" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline><polyline points="2 15.5 12 8.5 22 15.5"></polyline><line x1="12" y1="2" x2="12" y2="8.5"></line></svg></a>
+    
+    <div>
+        <div class="code-panels">
+<pre class="language-html" data-multiline="true"><code class="language-html"><span class="token comment">&lt;!-- 
+The classic file input element we'll enhance
+to a file pond, we moved the configuration
+properties to JavaScript
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>filepond<span class="token punctuation">"</span></span>
+    <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>filepond<span class="token punctuation">"</span></span>
+    <span class="token attr-name">accept</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/png, image/jpeg, image/gif<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span></code></pre>
+
+<pre class="language-js" data-multiline="true"><code class="language-js"><span class="token comment">// We register the plugins required to do </span>
+<span class="token comment">// image previews, cropping, resizing, etc.</span>
+FilePond<span class="token punctuation">.</span><span class="token function">registerPlugin</span><span class="token punctuation">(</span>
+  FilePondPluginFileValidateType<span class="token punctuation">,</span>
+  FilePondPluginImageExifOrientation<span class="token punctuation">,</span>
+  FilePondPluginImagePreview<span class="token punctuation">,</span>
+  FilePondPluginImageCrop<span class="token punctuation">,</span>
+  FilePondPluginImageResize<span class="token punctuation">,</span>
+  FilePondPluginImageTransform<span class="token punctuation">,</span>
+  FilePondPluginImageEdit
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Select the file input and use </span>
+<span class="token comment">// create() to turn it into a pond</span>
+FilePond<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    labelIdle<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Drag &amp; Drop your picture or &lt;span class="filepond--label-action"&gt;Browse&lt;/span&gt;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    imagePreviewHeight<span class="token operator">:</span> <span class="token number">170</span><span class="token punctuation">,</span>
+    imageCropAspectRatio<span class="token operator">:</span> <span class="token string">'1:1'</span><span class="token punctuation">,</span>
+    imageResizeTargetWidth<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    imageResizeTargetHeight<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    stylePanelLayout<span class="token operator">:</span> <span class="token string">'compact circle'</span><span class="token punctuation">,</span>
+    styleLoadIndicatorPosition<span class="token operator">:</span> <span class="token string">'center bottom'</span><span class="token punctuation">,</span>
+    styleProgressIndicatorPosition<span class="token operator">:</span> <span class="token string">'right bottom'</span><span class="token punctuation">,</span>
+    styleButtonRemoveItemPosition<span class="token operator">:</span> <span class="token string">'left bottom'</span><span class="token punctuation">,</span>
+    styleButtonProcessItemPosition<span class="token operator">:</span> <span class="token string">'right bottom'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// How to use with Pintura Image Editor:</span>
+<span class="token comment">// https://pqina.nl/pintura/docs/latest/getting-started/installation/filepond/</span></code></pre>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="section-pintura" id="pintura">
+
+    <div class="content-wrapper content-centered content-wide">
+
+        <div class="logos" title="The Perfect Couple">
+            <a href="/filepond/"><img src="./static/assets/filepond-logo-inverted.svg" height="46" alt="FilePond"></a>
+            <span>♥</span>
+            <a href="/pintura/?ref=filepond"><img src="./static/assets/pintura-logo-inverted.svg" height="58" alt="Pintura Image Editor"></a>
+        </div>
+
+        <p>Pintura Image Editor integrates beautifully with FilePond and unlocks the perfect image editing experience for your users.</p>
+<ul>
+<li>Five Minute Install</li>
+<li>Set Crop Masks and Guides</li>
+<li>Define Aspect Ratio Options</li>
+<li>Rotate, Resize, and Flip Images</li>
+<li>Annotate, Decorate, and Redact Images</li>
+<li>Finetune Image Colors</li>
+<li>Apply Filter Effects</li>
+</ul>
+
+
+        <a class="button button-call-to-action button-call-to-action-alt" href="/pintura/?ref=filepond" target="_blank">Learn more about Pintura</a>
+
+    </div>
+
+
+</section>
+
+<section class="section-features" id="features">
+
+    <div class="content-wrapper content-centered content-wide">
+
+        <h2 class="section-title">Feature Overview</h2>
+
+        <ul role="list" class="features-highlighted">
+            <li>
+                <h3 class="title">Multiple Input Formats</h3>
+                <span class="icon">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                </span>
+                <p>Accepts directories, files, blobs, local URLs, remote URLs and Data URIs.</p>
+            </li>
+            <li>
+                <h3 class="title">Multiple File Sources</h3>
+                <span class="icon">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </span>
+                <p>Drop files, select files from the file system, add files using the API, or copy and paste files.</p>
+            </li>
+            <li>
+                <h3 class="title">Async or Sync Uploading</h3>
+                <span class="icon">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                </span>
+                <p>Send files to the server using XMLHttpRequest or store and submit with form post as base64 using the File Encode plugin.</p>
+            </li>
+            <li>
+                <h3 class="title">Image Optimization</h3>
+                <span class="icon">    
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                </span>
+                <p>Automatic resizing and cropping of images on the client saves server bandwidth and dramatically increases upload speed.</p>
+            </li>
+            <li>
+                <h3 class="title">Accessible</h3>
+                <span class="icon">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                </span>
+                <p>Tested with AT software like VoiceOver and JAWS. FilePond's user interface is navigable by Keyboard.</p>
+            </li>
+            <li>
+                <h3 class="title">Responsive</h3>
+                <span class="icon">                    
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12" y2="18"></line></svg>
+                </span>
+                <p>Automatically scales to available space. Is functional on both mobile and desktop devices.</p>
+            </li>
+        </ul>
+
+        <div class="features-additional">
+
+            <h3>That's not all...</h3>
+
+            <div>
+
+                <ul class="centered-list" role="list">
+                    <li>Drag n' drop to reorder files</li>
+                    <li>Modify labels and icons</li>
+                    <li>Multiple or single file mode</li>
+                    <li>Filter files from dropped folders</li>
+                    <li>Restore temporary server files</li>
+                    <li>Catch files dropped on page</li>
+                    <li>Upload on drop or wait for user action</li>
+                    <li>Limit drop area height</li>
+                    <li>Drop to replace current file</li>
+                    <li>Copy paste files</li>
+                    <li>Add metadata to files</li>
+                    <li>Extend FilePond with plugins</li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <ul class="centered-list">
+                    <li>Limit the input file size</li>
+                    <li>Limit the total size of all files</li>
+                    <li>Limit the types of files that can be added</li>
+                    <li>Show preview for image files</li>
+                    <li>Crop images to a fixed ratio</li>
+                    <li>Resize images to fit in a bounding box</li>
+                    <li>Force resize images to a certain size</li>
+                    <li>Apply image transformations on the client</li>
+                    <li>Compress JPEG images</li>
+                    <li>Convert images to JPEG or PNG</li>
+                    <li>Read image EXIF orientation info</li>
+                    <li>Base64 encode files</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="content-centered">
+
+            <p class="hearth">
+            FilePond is constantly being improved <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </p>
+
+            <p>Inspect the <a href="#roadmap">roadmap</a> below to find out what's coming soon.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section-roadmap" id="roadmap">
+
+    <h2 class="section-title">Roadmap</h2>
+
+    <div class="content-wrapper content-wide">
+        
+        <div>
+            <h3><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>Core</h3>
+            <ul>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Grid view</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Chunk uploading</span></li>
+                
+                <li><span class="todo-check" data-state="unchecked"></span> <span>Animated button icons</span></li>
+                
+                <li><span class="todo-check" data-state="unchecked"></span> <span>Different item layouts</span></li>
+                
+                <li><span class="todo-check" data-state="unchecked"></span> <span>CSS variables for colors</span></li>
+                
+            </ul>
+        </div>
+
+        <div>
+            <h3>
+<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Adapters</h3>
+            <ul>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Angular</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Svelte</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Vue</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>jQuery</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>React</span></li>
+                
+            </ul>
+        </div>
+
+        <div>
+            <h3><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-droplet"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>Plugins</h3>
+            <ul>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Image editor</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Image rotation and flipping</span></li>
+                
+                <li><span class="todo-check" data-state="checked"></span> <span>Image watermarks</span></li>
+                
+                <li><span class="todo-check" data-state="unchecked"></span> <span>Image masking</span></li>
+                
+            </ul>
+        </div>
+
+    </div>
+
+    <p class="content-narrow content-centered">
+    Stay up to date on new roadmap releases by <a href="#subscribe">subscribing to the newsletter</a>
+    </p>
+    
+</section>
+
+
+<section class="section-pqina" id="pqina">
+
+    <div class="content-wrapper content-centered content-medium">
+
+        <h2 class="section-title">About PQINA</h2>
+
+        <p>
+            Run by Rik Schennink PQINA helps over <strong>10,000+ companies worldwide</strong> to be successful. PQINA is rated <strong>4.9 out of 5 stars</strong> based on <strong>500+ customer reviews</strong>
+        </p>
+
+        <blockquote class="testimonial">
+            <div><p>FilePond is my way of showing the web can rival the mobile app experience, it just needs that extra bit of attention.</p></div>
+            <footer>
+                <cite>
+                    <img class="cite-sig" width="150" height="60" src="static/assets/me-sig.png" alt="fake-signature">
+                    <a href="https://pqina.nl/" target="_blank" rel="noopener">
+                        <img src="static/assets/me-thumb.jpeg" alt="">
+                        <span>
+                            <span class="cite-name gradient-text-primary">Rik Schennink</span>
+                            <span class="cite-title">PQINA</span>
+                        </span>
+                    </a>
+                </cite>
+            </footer>
+        </blockquote>
+
+    </div>
+
+</section>
+
+
+
+    </main>
+
+    <aside class="section-subscribe" id="subscribe">
+
+        <div class="content-wrapper content-narrow">
+
+            <h2 class="section-title">Subscribe</h2>
+
+            <p>Receive notifications to stay up to date on new FilePond core and plugin releases.</p>
+
+            <form class="js-cm-form" id="subForm" action="https://www.createsend.com/t/subscribeerror?description=" method="post" data-id="92D4C54F0FEC16E5ADC2B1904DE9ED1A3BE38E4FF9A17FDC5AA59D46DCBAFDC68CFB1A3F0A3DB9E301DFB140B8C9BBBE1CDD3B1404AA0DEAEF2494A417F0F15C">
+                <div class="form-input line">
+                    
+                    <div class="line">
+                        <label class="implicit">Email </label>
+                        <span class="input"><input autocomplete="Email" aria-label="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" placeholder="example@domain.com" maxlength="200" name="cm-qkrqu-qkrqu" required="" type="email"></span>
+                    </div>
+
+                    <div class="field field-row">
+                        <button class="button" type="submit">Subscribe</button>
+                    </div>
+                </div>
+
+            </form>
+            <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+
+        </div>
+
+    </aside>
+
+    <footer>
+
+        <a class="identity" href="https://pqina.nl">
+            <img data-module="LazyImage" src="" data-src="static/assets/logo.svg" alt="PQINA" width="80">
+        </a>
+
+    </footer>
+    
+    <script>
+    [
+        {supported: 'Symbol' in window, fill: 'https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js'},
+        {supported: 'Promise' in window, fill: 'https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js'},
+        {supported: 'fetch' in window, fill: 'https://cdn.jsdelivr.net/npm/fetch-polyfill@0.8.2/fetch.min.js'},
+        {supported: 'CustomEvent' in window && 'log10' in Math && 'sign' in Math &&  'assign' in Object &&  'from' in Array &&
+                    ['find', 'findIndex', 'some', 'includes'].reduce(function(previous, prop) { return (prop in Array.prototype) ? previous : false; }, true), fill: './static/assets/filepond-polyfill.min.js?v=1721398224'}
+    ].forEach(function(p) {
+        if (p.supported) return;
+        document.write('<script src="' + p.fill + '"><\/script>');
+    });
+    </script>
+
+    
+    <script src="./static/js/bundle-1721398224.js"></script>
+
+    
+
+<!-- defer loading of filepond -->
+<script>
+
+// load FilePond resources
+var resources = [
+    'filepond.css',
+    'filepond.js',
+
+    'filepond-plugin-file-encode.min.js',
+
+    'filepond-plugin-file-validate-type.min.js',
+    'filepond-plugin-file-validate-size.min.js',
+
+    'filepond-plugin-image-exif-orientation.min.js',
+    'filepond-plugin-image-preview.min.css',
+    'filepond-plugin-image-preview.min.js',
+    'filepond-plugin-image-crop.min.js',
+    'filepond-plugin-image-resize.min.js',
+    'filepond-plugin-image-transform.min.js',
+
+    // for use with Pintura Image Editor
+    'filepond-plugin-file-poster.min.css',
+    'filepond-plugin-file-poster.min.js',
+    'filepond-plugin-image-editor.min.js',
+
+].map(function(resource) { return './static/assets/' + resource + '?1721398224' });
+
+// expose on global scope for demo purposes
+window.pond = null;
+
+loadResources(resources).then(function() {
+
+    // register plugins
+    FilePond.registerPlugin(
+        FilePondPluginFileEncode,
+        FilePondPluginFileValidateType,
+        FilePondPluginFileValidateSize,
+        FilePondPluginImageExifOrientation,
+        FilePondPluginImagePreview,
+        FilePondPluginImageCrop,
+        FilePondPluginImageResize,
+        FilePondPluginImageTransform,
+
+        FilePondPluginFilePoster,
+        FilePondPluginImageEditor /* for use with Pintura */
+    );
+
+    // override default options
+    FilePond.setOptions({
+        dropOnPage: true,
+        dropOnElement: true
+    });
+
+    // mock server to simulate uploads (for privacy reasons)
+    var mockServer = {
+        remove: null,
+        revert: null,
+        process: function(fieldName, file, metadata, load, error, progress, abort, transfer, options) {
+            
+            var prog = 0;
+            var total = file.size;
+            var speed = 128 * 1024; // KB/s
+            var aborted = false;
+
+            const tick = function() {
+
+                if (aborted) return;
+
+                prog += Math.random() * speed;
+                prog = Math.min(total, prog);
+                
+                progress(true, prog, total);
+
+                if (prog === total) {
+                    load(Date.now());
+                    return;
+                }
+
+                setTimeout(tick, Math.random() * 250)
+            }
+
+            tick();
+
+            return {
+                abort: function() {
+                    aborted = true;
+
+                    abort()
+                }
+            }
+        }
+    };
+
+    // create splash file pond element
+    var fields = [].slice.call(document.querySelectorAll('input[type="file"]'));
+    var ponds = fields.map(function(field, index) {
+        return FilePond.create(field, {
+            credits: false,
+            server: mockServer,
+            allowFilePoster: false,
+            allowImageEditor: false
+        });
+    });
+
+    // add warning to multiple files pond
+    var pondDemoMultiple = ponds[1];
+    var pondMultipleTimeout;
+    pondDemoMultiple.onwarning = function() {
+        var container = pondDemoMultiple.element.parentNode;
+        var error = container.querySelector('p.filepond--warning');
+        if (!error) {
+            error = document.createElement('p');
+            error.className = 'filepond--warning';
+            error.textContent = 'The maximum number of files is 3';
+            container.appendChild(error);
+        }
+        requestAnimationFrame(function() {
+            error.dataset.state = 'visible';
+        });
+        clearTimeout(pondMultipleTimeout);
+        pondMultipleTimeout = setTimeout(function() {
+            error.dataset.state = 'hidden';
+        }, 5000);
+    };
+    pondDemoMultiple.onaddfile = function() {
+        clearTimeout(pondMultipleTimeout);
+        var container = pondDemoMultiple.element.parentNode;
+        var error = container.querySelector('p.filepond--warning');
+        if (error) {
+            error.dataset.state = 'hidden';
+        }
+    };
+
+    // set top pond
+    pond = ponds[0];
+
+    // show top pond
+    pond.element.parentNode.style.opacity = 1;
+    setTimeout(function(){
+        pond.addFile('./static/assets/filepond.js')
+    }, 1250);
+
+    // use developer console to inspect filePond API
+    console.log(
+        '\n👩🏻‍💻 FilePond API ( window.FilePond ) :\n\n',
+        FilePond,
+        '\n\n'
+    );
+
+    console.log(
+        '\n👨🏻‍💻 FilePond instance API ( window.pond ):\n\n',
+        pond, 
+        '\n\n'
+    );
+
+    console.log('\n💬 %cFor development updates → %o\n', 'color: #1da1f2', 'https://twitter.com/rikschennink');
+
+    document.dispatchEvent(new CustomEvent('filepond:ready'))
+
+});
+</script>
+
+<script type="module">
+// 
+// This sandbox version of Pintura Image Editor is for use on pqina.nl only.
+// 
+// For testing purposes please purchase a license here: https://pqina.nl/pintura/
+// 
+var loadPintura = (pintura) => {
+
+        // assign to multi upload
+        var pondMultiple = FilePond.find(document.querySelector('#multi-file-demo .filepond'));
+        
+        // register plugins to use
+        pintura.setPlugins(pintura.plugin_crop, pintura.plugin_finetune, pintura.plugin_filter);
+
+        // not needed when using Pintura Image Editor
+        pondMultiple.allowImagePreview = false;
+        pondMultiple.allowImageTransform = false;
+        pondMultiple.allowImageResize = false;
+        pondMultiple.allowImageCrop = false;
+        pondMultiple.allowImageExifOrientation = false;
+
+        // set Pintura Image Editor props
+        pondMultiple.allowFilePoster = true;
+        pondMultiple.allowImageEditor = true;
+        pondMultiple.filePosterMaxHeight = 256;
+        pondMultiple.imageEditor = {
+            legacyDataToImageState: pintura.legacyDataToImageState,
+            createEditor: pintura.openEditor,
+            imageReader: [pintura.createDefaultImageReader],
+            imageWriter: [pintura.createDefaultImageWriter],
+            imageProcessor: pintura.processImage,
+            editorOptions: {
+                imageOrienter: pintura.createDefaultImageOrienter(),
+                previewUpscale: true,
+                ...pintura.plugin_finetune_defaults,
+                ...pintura.plugin_filter_defaults,
+                locale: {
+                    ...pintura.locale_en_gb,
+                    ...pintura.plugin_crop_locale_en_gb,
+                    ...pintura.plugin_finetune_locale_en_gb,
+                    ...pintura.plugin_filter_locale_en_gb,
+                },
+            },
+        }
+
+        // assign to profile picture
+        var pondProfile = FilePond.find(document.querySelector('#profile-picture-demo .filepond'));
+
+        // not needed when using Pintura Image Editor
+        pondProfile.allowImagePreview = false;
+        pondProfile.allowImageTransform = false;
+        pondProfile.allowImageResize = false;
+        pondProfile.allowImageCrop = false;
+        pondProfile.allowImageExifOrientation = false;
+        pondProfile.allowFilePoster = true;
+        pondProfile.allowImageEditor = true;
+        pondProfile.imageEditor = {
+            legacyDataToImageState: pintura.legacyDataToImageState,
+            createEditor: pintura.openEditor,
+            imageReader: [pintura.createDefaultImageReader],
+            imageWriter: [pintura.createDefaultImageWriter],
+            imageProcessor: pintura.processImage,
+            editorOptions: {
+                imageOrienter: pintura.createDefaultImageOrienter(),
+                imageCropAspectRatio: 1,
+                previewUpscale: true,
+                ...pintura.plugin_finetune_defaults,
+                ...pintura.plugin_filter_defaults,
+                locale: {
+                    ...pintura.locale_en_gb,
+                    ...pintura.plugin_crop_locale_en_gb,
+                    ...pintura.plugin_finetune_locale_en_gb,
+                    ...pintura.plugin_filter_locale_en_gb,
+                },
+            },
+        }
+        
+}
+
+loadResources(['./demo/pintura.css']).then(function() {
+    import('./demo/pintura.js').then(pintura => {
+        if (window.pond) return loadPintura(pintura);
+        else {
+            document.addEventListener('filepond:ready', () => {
+                loadPintura(pintura)
+            })
+        }
+    })
+});
+</script>
+
+
+    
+    <script async="" defer="" data-hostname="filepond.pqina.nl" src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+
+
+</body></html>

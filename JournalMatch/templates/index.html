@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>JournalMatch</title>
+
+    <!-- CSS FILES -->        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/css/templatemo-topic-listing.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the file input and upload button */
+        .input-group input[type="file"] {
+            border: none;
+            box-shadow: none;
+            outline: none;
+            padding: 5px;
+        }
+
+        .input-group button[type="submit"] {
+            height: 45px;
+            line-height: 45px;
+            padding: 0;
+            background-color:rgb(3, 48, 53);
+        }
+
+        .hero-section .custom-form .input-group {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-section .custom-form .input-group .form-control {
+            margin: 0 5px;
+            flex: 1;
+        }
+
+    </style>
+</head>
+
+<body id="top">
+    <main>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi-back"></i>
+                    <span>Journal Retraction Check</span>
+                </a>
+
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="d-none d-lg-block ms-auto">
+                        <a>Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h1 class="text-center" style="color:rgb(3, 48, 53)">Upload. Assess. Extract</h1>
+                        <h6 class="text-center text-white" style="font-size: medium;">Submit your academic journal/research information containing CSV file & confirm research integrity</h6>
+
+                        <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data" class="custom-form mt-4 pt-2 mb-lg-0 mb-5">
+                            <div class="input-group input-group-lg">
+                                <input type="file" name="file" accept=".csv" class="form-control" required>
+                                <button type="submit" class="form-control">Check</button>
+                            </div>
+                        </form>
+                        <div id="result" class="text-center text-white mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/click-scroll.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const resultDiv = document.getElementById('result');
+            if (response.ok) {
+                if (response.headers.get('Content-Disposition') && response.headers.get('Content-Disposition').includes('attachment')) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'matched_records.csv';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    resultDiv.textContent = 'Matching records found and downloaded.';
+                } else {
+                    const text = await response.text();
+                    resultDiv.textContent = text;
+                }
+            } else {
+                const errorText = await response.text();
+                resultDiv.textContent = errorText;
+            }
+        });
+    </script>
+</body>
+</html>
